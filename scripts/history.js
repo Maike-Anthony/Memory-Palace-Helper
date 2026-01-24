@@ -45,13 +45,13 @@ function writeTable(i) {
 
 document.addEventListener("DOMContentLoaded", () => {
     if (document.documentElement.lang === 'en') {
-        if (history.length === 0) {
+        if (history === null || history.length === 0) {
             document.querySelector('#container').querySelector('p').innerText = 'You have not finished any memorization session yet.'
         } else {
             document.querySelector('#container').querySelector('p').innerText = 'You can see your previous memorization sessions below:'
         }
     } else {
-        if (history.length === 0) {
+        if (history === null || history.length === 0) {
             document.querySelector('#container').querySelector('p').innerText = 'Você ainda não terminou nenhuma sessão de memorização.'
         } else {
             document.querySelector('#container').querySelector('p').innerText = 'Você pode encontrar as suas sessões de memorização anteriores abaixo:'
