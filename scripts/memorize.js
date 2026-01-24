@@ -62,6 +62,7 @@ function saveCurImage() {
     if (memorized === length) {
         localStorage.setItem('images', JSON.stringify(images))
         clearInterval(myTimer)
+        document.querySelector('#avg-time').innerHTML = timeToString(Math.floor(timeElapsed / memorized))
         saveTime()
     }
 }
@@ -74,13 +75,23 @@ function addNextItem() {
     let new_item = document.createElement('div');
 
     new_item.className = 'cur-item';
-    new_item.innerHTML = `
+    if (document.documentElement.lang === 'en') {
+        new_item.innerHTML = `
         <p>Mentally visualize the ${curMp} and walk to the ${curLocus} in the ${curRoom}. <br> Now create a mental image happening in the ${curLocus} to represent the ${curItem} and type it in.</p>
         <div class="image-container">
             <p>${curLocus}: ${curItem}</p>
             <input class="image-input" type="text" placeholder="Type Image" autofocus autocomplete="off">
         </div>
         `
+    } else {
+        new_item.innerHTML = `
+        <p>Visualize mentalmente o ${curMp} e caminhe até o ${curLocus} no ${curRoom}. <br> Agora crie uma imagem mental acontecendo no ${curLocus} para representar o ${curItem} e digite-a abaixo.</p>
+        <div class="image-container">
+            <p>${curLocus}: ${curItem}</p>
+            <input class="image-input" type="text" placeholder="Digite a Imagem" autofocus autocomplete="off">
+        </div>
+        `
+    }
     
     if (document.querySelector('#cur-item-container').innerHTML !== '') {
         document.querySelector('#cur-item-container').innerHTML = ''
@@ -139,6 +150,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     document.querySelector('#recall').addEventListener('click', () => {
-        window.location.href = 'recall.html'
+        if (document.documentElement.lang === 'en') {
+            window.location.href = 'recall.html'
+        } else {
+            window.location.href = 'recall_pt-br.html'
+        }
     })
 })

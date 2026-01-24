@@ -159,6 +159,21 @@ input {
 
 #container, #qea {
     animation: opacity;
-    animation-duration: 1s;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes disappear {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.animate-disappear {
+    animation-name: disappear;
+    animation-duration: 0.3s;
     animation-fill-mode: forwards;
 }

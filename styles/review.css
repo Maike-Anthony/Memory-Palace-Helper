@@ -71,3 +71,18 @@ button:disabled {
 #container > p {
     text-align: justify;
 }
+
+@keyframes opacity {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+#container {
+    animation: opacity;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}

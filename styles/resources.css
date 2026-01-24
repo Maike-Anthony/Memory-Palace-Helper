@@ -75,3 +75,18 @@ iframe {
     aspect-ratio: 16 / 9;
     border: transparent;
 }
+
+@keyframes opacity {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+#container {
+    animation: opacity;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}

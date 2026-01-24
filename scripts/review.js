@@ -10,8 +10,14 @@ function writeCsvString() {
     let csv_str = '#html:true';
     let length = list_items.length;
 
-    for (let i = 0; i < length; i++) {
-        csv_str += `\n${loci[i]},${list_items[i]}<br><br><details><summary>Image</summary>${images[i]}</details>`;
+    if (document.documentElement.lang === 'en') {
+        for (let i = 0; i < length; i++) {
+            csv_str += `\n${loci[i]},${list_items[i]}<br><br><details><summary>Image</summary>${images[i]}</details>`;
+        }
+    } else {
+        for (let i = 0; i < length; i++) {
+            csv_str += `\n${loci[i]},${list_items[i]}<br><br><details><summary>Imagem</summary>${images[i]}</details>`;
+        }
     }
 
     return csv_str;

@@ -111,7 +111,7 @@ button:disabled {
     font-weight: 600;
 }
 
-#next-container, #recall {
+#next-container, #recall:not([hidden]) {
     display: flex;
     justify-self: center;
     margin-top: 20px;

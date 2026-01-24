@@ -3,10 +3,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const sbmt_btn = document.querySelector('#submit-list-items')
     const name_btn = document.querySelector('#submit-list-name')
     const csv_container = document.querySelector('#csv-container')
-    const alterantive_container = document.querySelector('#alternative')
+    const alternative_container = document.querySelector('#alternative')
     const sbmt_csv = document.querySelector('#csv-submit')
     const csv_toggle_btn = document.querySelector('#csv-toggle')
-    alterantive_container.hidden = true
+    alternative_container.hidden = true
     csv_toggle_btn.disabled = true
     sbmt_csv.disabled = true
     csv_container.hidden = true
@@ -37,10 +37,18 @@ document.addEventListener("DOMContentLoaded", () => {
     plus_btn.addEventListener('click', () => {
         const new_block = document.createElement('div')
         new_block.className = 'new-item-block'
-        new_block.innerHTML = `
+        if (document.documentElement.lang === 'en') {
+            new_block.innerHTML = `
             <input class="new-item-input" type="text" placeholder="New Item">
             <button class="minus">-</button>
         `
+        } else {
+            new_block.innerHTML = `
+            <input class="new-item-input" type="text" placeholder="Novo Item">
+            <button class="minus">-</button>
+        `
+        }
+
         new_items.append(new_block)
         new_block.querySelector('input').focus()
         sbmt_btn.disabled = true
@@ -49,7 +57,10 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener('click', event => {
         const element = event.target
         if (element.className === 'minus') {
-            element.parentElement.remove()
+            element.parentElement.classList.add('animate-disappear')
+            element.parentElement.addEventListener('animationend', () => {
+                element.parentElement.remove()
+            })
         } else if (element.id === 'csv-toggle') {
             csv_container.hidden = false
         }
@@ -63,10 +74,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
         document.querySelector('#csv-list-items').value = ''
 
-        window.location.href = 'palace.html'
+        if (document.documentElement.lang === 'en') {
+            window.location.href = 'palace.html'
+        } else {
+            window.location.href = 'palace_pt-br.html'
+        }
     }
 
-    document.querySelector('#list-name').onsubmit = () => {
+    name_btn.onclick = () => {
         const list_name = document.querySelector('#list-name-input').value;
 
         const title = document.querySelector('#title-list')
@@ -77,10 +92,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         document.querySelector('#insertion').hidden = false
         document.querySelector('#insertion').querySelector('input').focus()
-        alterantive_container.hidden = false
+        alternative_container.hidden = false
         csv_toggle_btn.disabled = false
-        
-        return false;
     }
 
     document.addEventListener('keyup', event => {
@@ -97,6 +110,10 @@ document.addEventListener("DOMContentLoaded", () => {
             sbmt_csv.disabled = false
         }
 
+        if (event.key === 'Enter' && event.target.id === 'list-name-input') {
+            name_btn.click()
+        }
+
         sbmt_btn.disabled = is_empty()
     })
 
@@ -108,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 
 
-    document.querySelector('#items').onsubmit = () => {
+    sbmt_btn.onclick = () => {
         let list_items = [];
         
         document.querySelectorAll('.new-item-input').forEach(input => {
@@ -118,7 +135,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         localStorage.setItem('list_items', JSON.stringify(list_items))
 
-        window.location.href = 'palace.html'
+        if (document.documentElement.lang === 'en') {
+            window.location.href = 'palace.html'
+        } else {
+            window.location.href = 'palace_pt-br.html'
+        }
         return false;
     }
 })

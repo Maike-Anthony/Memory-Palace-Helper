@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>Memory Palace Helper</title>
+        <link rel="stylesheet" href="styles/header.css">
+        <link rel="stylesheet" href="styles/list.css">
+        <script src="scripts/list.js"></script>
+        <link rel="icon" href="images/favicon.svg">
+    </head>
+    <body>
+        <div id="header">
+            <div>
+                <a href="index_pt-br.html">Homepage</a>
+                <a href="history_pt-br.html">Histórico</a>
+                <a href="resources_pt-br.html">Recursos</a>
+                <a href="aboutme_pt-br.html">Sobre mim</a>
+            </div>
+            <div>
+                <a href="list.html"><button><img src="images/us_flag.png">EN-US</button></a>
+            </div>
+        </div>
+        <div id="container">
+            <h1>Adicione Uma Lista</h1>
+            <p>A primeira etapa para aplicar o método do palácio da memória é definir os itens a serem memorizados.</p>
+            <div id="list-name">
+                <input id="list-name-input" type="text" placeholder="Nome da lista" autofocus autocomplete="off">
+                <button id="submit-list-name">Salvar Nome</button>
+            </div>
+            <div id="insertion">
+                <p>Insira os itens da lista abaixo:</p>
+                <div id="title-list"></div>
+                <div id="items">
+                    <div id="new-items">
+                        <div class="new-item-block">
+                            <input class="new-item-input" type="text" placeholder="Novo item">
+                            <button type="button" class="minus">-</button>
+                        </div>
+                    </div>
+                    <button type="button" class="plus">+</button>
+                    <button id="submit-list-items">Salvar Lista</button>
+                </div>
+            </div>
+        </div>
+        <div id="alternative">
+            <button id="csv-toggle">Alternativa: inserir todos os itens de uma vez</button>
+            <div id="csv-container">
+                <p>Se preferir, você pode colar a sua lista a seguir, separando os itens por vírgulas.</p>
+                <input id="csv-list-items" type="text" placeholder="Lista separada por vírgulas" autocomplete="off">
+                <button id="csv-submit">Salvar Lista</button>
+                <p>Exemplo: "Agentina,Brasil,Colômbia"</p>
+            </div>
+        </div>
+        <div id="qea">
+            <h1>Q&A</h1>
+            <ul>
+                <li>
+                    <div class="question">Como Memorizar Tabelas?</div>
+                    <p class="answer">Se você quiser memorizar listas em que cada item tem vários atributos, como países ou elementos químicos, basta inserir cada item junto com suas características no mesmo campo de texto, separados por um espaço. Por exemplo: “Hydrogen (H) 1”, “Helium (He) 2”, “Lithium (Li) 3” etc.</p>
+                </li>
+            </ul>
+        </div>
+    </body>
+</html>

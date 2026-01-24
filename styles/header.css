@@ -45,7 +45,7 @@ button {
     height: 20px;
 }
 
-#header a {
+#header > div:first-child a {
     margin-right: 30px;
     color: #fff;
 }

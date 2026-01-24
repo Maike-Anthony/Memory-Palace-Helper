@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="styles/header.css">
         <link rel="stylesheet" href="styles/list.css">
         <script src="scripts/list.js"></script>
+        <link rel="icon" href="images/favicon.svg">
     </head>
     <body>
         <div id="header">
@@ -15,20 +16,20 @@
                 <a href="aboutme.html">About me</a>
             </div>
             <div>
-                <button><img src="images/brazil_flag.png">PT-BR</button>
+                <a href="list_pt-br.html"><button><img src="images/brazil_flag.png">PT-BR</button></a>
             </div>
         </div>
         <div id="container">
             <h1>Add Your List</h1>
             <p>The first step to apply the Memory Palace Method is to define the items of the list to be memorized.</p>
-            <form id="list-name">
+            <div id="list-name">
                 <input id="list-name-input" type="text" placeholder="List Name" autofocus autocomplete="off">
-                <input id="submit-list-name" type="submit" value="Save list name">
-            </form>
+                <button id="submit-list-name">Save list name</button>
+            </div>
             <div id="insertion">
                 <p>Insert the list items below:</p>
                 <div id="title-list"></div>
-                <form id="items">
+                <div id="items">
                     <div id="new-items">
                         <div class="new-item-block">
                             <input class="new-item-input" type="text" placeholder="New Item">
@@ -36,8 +37,8 @@
                         </div>
                     </div>
                     <button type="button" class="plus">+</button>
-                    <input id="submit-list-items" type="submit" value="Save list">
-                </form>
+                    <button id="submit-list-items">Save list</button>
+                </div>
             </div>
         </div>
         <div id="alternative">
