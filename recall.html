@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Memory Palace Helper</title>
+        <link rel="stylesheet" href="styles/header.css">
+        <link rel="stylesheet" href="styles/recall.css">
+        <script src="scripts/recall.js"></script>
+    </head>
+    <body>
+        <div id="header">
+            <div>
+                <a href="index.html">Homepage</a>
+                <a href="history.html">History</a>
+                <a href="resources.html">Resources</a>
+                <a href="aboutme.html">About me</a>
+            </div>
+            <div>
+                <button><img src="images/brazil_flag.png">PT-BR</button>
+            </div>
+        </div>
+        <div id="time-header">
+            <div id="time-container">
+                <div>
+                    <div>Elapsed time:</div>
+                    <div id="total-time"></div>
+                </div>
+                <div>
+                    <div>Time/item: </div>
+                    <div id="avg-time"></div>
+                </div>
+            </div>
+            <button id="hide-time"></button>
+        </div>
+        <div id="container">
+            <h1>Recall</h1>
+            <p>Now it’s time to recall the items from your memory palace!</p>
+            <div id="all-inputs"></div>
+            <div id="btns">
+                <button id="check-answers">Check Answers</button>
+            </div>
+        </div>
+        <div id="scoreboard">
+            <div id="correct-score">Correct Items: </div>
+            <div id="mistake-score">Mistakes: </div>
+            <div id="accuracy-score">Accuracy: </div>
+            <div>
+                <a href="review.html"><button id="next-page">Next Page</button></a>
+                <a href="recall.html"><button>Recall Again</button></a>
+            </div>
+        </div>
+    </body>
+</html>

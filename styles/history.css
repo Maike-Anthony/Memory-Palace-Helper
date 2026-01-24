@@ -1,0 +1,129 @@
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: whitesmoke;
+    min-height: 100vh;
+}
+
+body p, li, summary {
+    font-size: 20px;
+}
+
+#container {
+    margin-top: calc(5vh + 60px);
+}
+
+h1 {
+    color: #222C58;
+    font-size: 50px;
+    font-weight: 900;
+}
+
+.question {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+#container, #qea, #scoreboard, .session {
+    border: 1px solid black;
+    border-radius: 30px;
+    box-shadow: 5px 5px 5px rgb(0, 0, 0, 0.5);
+    background-color: #b2eaff;
+    padding: 2%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 5vh;
+}
+
+input, #container button, #scoreboard button {
+    font-size: 20px;
+    box-shadow: 1px 1px 0px rgb(0, 0, 0, 0.5);
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: transparent;
+    border-radius: 10px;
+}
+
+input {
+    background-color: whitesmoke;
+}
+
+button:not(:disabled) {
+    border-radius: 10px;
+    background-color: #222C58;
+    color: #fff;
+    cursor: pointer;
+}
+
+button:disabled {
+    background-color: gray;
+    color: #ccc;
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+.download-btn {
+    display: flex;
+    justify-self: center;
+}
+
+.delete-session-btn:not(:disabled) {
+    display: flex;
+    justify-self: right;
+    background-color: rgb(255, 66, 66);
+    border: 1px solid rgb(90, 0, 0);
+    color: #fff;
+}
+
+li {
+    margin-top: 10px;
+}
+
+li:has(> details) {
+    list-style: none;
+}
+
+table {
+    margin-top: 10px;
+    width: 100%;
+    background-color: whitesmoke;
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 2px dashed black;
+    padding: 10px;
+}
+
+th {
+    background-color: #222C58;
+    color: #fff;
+}
+
+#list_name {
+    font-weight: 600;
+}
+
+@keyframes delete {
+    0% {
+        max-height: 500px;
+        opacity: 1;
+    }
+    50% {
+        max-height: 500px;
+        opacity: 0;
+    }
+    100% {
+        max-height: 0;
+        opacity: 0;
+    }
+}
+
+.animate-delete {
+    animation-name: delete;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    overflow: hidden;
+}

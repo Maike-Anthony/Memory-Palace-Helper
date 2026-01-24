@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Memory Palace Helper</title>
+        <link rel="stylesheet" href="styles/header.css">
+        <link rel="stylesheet" href="styles/list.css">
+        <script src="scripts/list.js"></script>
+    </head>
+    <body>
+        <div id="header">
+            <div>
+                <a href="index.html">Homepage</a>
+                <a href="history.html">History</a>
+                <a href="resources.html">Resources</a>
+                <a href="aboutme.html">About me</a>
+            </div>
+            <div>
+                <button><img src="images/brazil_flag.png">PT-BR</button>
+            </div>
+        </div>
+        <div id="container">
+            <h1>Add Your List</h1>
+            <p>The first step to apply the Memory Palace Method is to define the items of the list to be memorized.</p>
+            <form id="list-name">
+                <input id="list-name-input" type="text" placeholder="List Name" autofocus autocomplete="off">
+                <input id="submit-list-name" type="submit" value="Save list name">
+            </form>
+            <div id="insertion">
+                <p>Insert the list items below:</p>
+                <div id="title-list"></div>
+                <form id="items">
+                    <div id="new-items">
+                        <div class="new-item-block">
+                            <input class="new-item-input" type="text" placeholder="New Item">
+                            <button type="button" class="minus">-</button>
+                        </div>
+                    </div>
+                    <button type="button" class="plus">+</button>
+                    <input id="submit-list-items" type="submit" value="Save list">
+                </form>
+            </div>
+        </div>
+        <div id="alternative">
+            <button id="csv-toggle">Paste items directly instead</button>
+            <div id="csv-container">
+                <p>You can alternatively paste the list here by separating the elements with commas.</p>
+                <input id="csv-list-items" type="text" placeholder="Comma separated list" autocomplete="off">
+                <button id="csv-submit">Save List</button>
+                <p>E.g., "Agentina,Brazil,Colombia"</p>
+            </div>
+        </div>
+        <div id="qea">
+            <h1>Q&A</h1>
+            <ul>
+                <li>
+                    <div class="question">How to memorize tables?</div>
+                    <p class="answer">If you want to memorize lists where each item has multiple attributes, like the countries or the elements, you can simply enter each item together with its features in the same text box separated by a space. E.g., "Hydrogen (H) 1", "Helium (He) 2", "Lithium (Li) 3", etc.</p>
+                </li>
+            </ul>
+        </div>
+    </body>
+</html>

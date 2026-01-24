@@ -1,0 +1,164 @@
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: whitesmoke;
+    min-height: 100vh;
+}
+
+body p {
+    font-size: 20px;
+}
+
+#container {
+    margin-top: calc(5vh + 60px);
+}
+
+#container, #insertion, #alternative, #qea {
+    border: 1px solid black;
+    border-radius: 30px;
+    box-shadow: 5px 5px 5px rgb(0, 0, 0, 0.5);
+    background-color: #b2eaff;
+    padding: 2%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+#insertion, #alternative, #qea {
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+}
+
+h1 {
+    color: #222C58;
+    font-size: 50px;
+    font-weight: 900;
+}
+
+.question {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+input, #container button, #alternative button {
+    font-size: 20px;
+    box-shadow: 1px 1px 0px rgb(0, 0, 0, 0.5);
+    padding: 10px;
+}
+
+.new-item-input {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: calc(30vw - 30px);
+}
+
+#items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#title-list {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+input {
+    border: transparent;
+    border-radius: 10px;
+    background-color: whitesmoke;
+}
+
+#submit-list-items {
+    margin-top: 10px;
+}
+
+.new-item-block {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+#csv-list-items {
+    margin-right: 10px;
+}
+
+.plus, .minus {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    border-radius: 15px;
+    margin-left: 5px;
+    padding: 0;
+    height: 30px;
+    width: 30px;
+}
+
+.minus {
+    background-color: rgb(255, 66, 66);
+    border: 1px solid rgb(90, 0, 0);
+    color: black;
+}
+
+.plus {
+    background-color: rgb(120, 255, 120);
+    border: 1px solid rgb(0, 90, 0);
+    color: black;
+}
+
+#list-name {
+    display: flex;
+    gap: 10px;
+}
+
+#submit-list-name, #submit-list-items, #csv-submit, #csv-toggle {
+    border: transparent;
+    border-radius: 10px;
+    background-color: #222C58;
+    color: #fff;
+    cursor: pointer;
+}
+
+#submit-list-name:disabled, #submit-list-items:disabled, #csv-submit:disabled {
+    background-color: gray;
+    color: #ccc;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+@keyframes fadeIn {
+    0% {
+        max-height: 0;
+        opacity: 0;
+    }
+    75% {
+        max-height: 100vh;
+        opacity: 0;
+    }
+    100% {
+        max-height: 100vh;
+        opacity: 1;
+    }
+}
+
+#alternative, #csv-container, .new-item-block {
+    animation-name: fadeIn;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes opacity {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+#container, #qea {
+    animation: opacity;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}

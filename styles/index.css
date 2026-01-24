@@ -1,0 +1,93 @@
+body {
+    background-color: whitesmoke;
+}
+
+#get_started {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #80ddff;
+    z-index: 1;
+}
+
+#get_started button {
+    border: transparent;
+    background-color: #3c4043;
+    border-radius: 20px;
+    padding: 10px;
+    color: #fff;
+    font-size: 20px;
+}
+
+#get_started > p {
+    color: #222C58;
+}
+
+h1 {
+    font-size: 80px;
+    font-weight: 900;
+    margin: 0;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #fff;
+    text-shadow: 4px 4px 2px rgb(0, 0, 0, 0.6);
+}
+
+h2 {
+    font-size: 30px;
+    font-weight: 900;
+    color: #222C58;
+}
+
+p {
+    font-size: 20px;
+    line-height: 1.5;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+#description {
+    margin-top: calc(60vh + 60px);
+}
+
+#description, #tutorial {
+    position: relative;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 10%;
+    padding-right: 10%;
+    display: flex;
+    flex-direction: column;
+    background-color: whitesmoke;
+    z-index: 2;
+}
+
+#description > div {
+    display: flex;
+    flex-direction: row;
+}
+
+#description > div p, #tutorial > p {
+    text-align: justify;
+}
+
+img {
+    height: auto;
+    width: auto;
+    object-fit: contain;
+}
+
+iframe {
+    margin-top: 5%;
+    align-self: center;
+    height: auto;
+    width: 60%;
+    aspect-ratio: 16 / 9;
+    border: transparent;
+}
