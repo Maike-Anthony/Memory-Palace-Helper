@@ -94,6 +94,10 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelector('#insertion').querySelector('input').focus()
         alternative_container.hidden = false
         csv_toggle_btn.disabled = false
+        document.querySelector('#add-list-name-container').classList.add('animate-disappear')
+        document.querySelector('#add-list-name-container').addEventListener('animationend', () => {
+            document.querySelector('#add-list-name-container').hidden = true
+        })
     }
 
     document.addEventListener('keyup', event => {
