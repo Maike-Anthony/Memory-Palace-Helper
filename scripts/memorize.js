@@ -3,8 +3,45 @@ let loci = JSON.parse(localStorage.getItem('loci'))
 let length = list_items.length
 let memorized = 0
 let images = []
-let timeElapsed = 0 
+let timeElapsed = 0
 let myTimer
+
+let resume = JSON.parse(localStorage.getItem('resume'))
+let isLoading = false
+if (resume === null || resume.address !== 'memorize') {
+    resume = {
+        'address': '',
+        'data': {
+            'memorized': 0,
+            'images': [],
+            'timeElapsed': 0
+        }
+    }
+}
+
+function savePage() {
+    resume.address = 'memorize'
+
+    resume.data.images = images
+    resume.data.memorized = memorized
+    resume.data.timeElapsed = timeElapsed
+
+    localStorage.setItem('resume', JSON.stringify(resume))
+}
+
+function loadPage() {
+    isLoading = true
+    if (resume.address !== 'memorize') {
+        isLoading = false
+        return
+    }
+
+    images = resume.data.images
+    memorized = resume.data.memorized
+    timeElapsed = resume.data.timeElapsed
+
+    isLoading = false
+}
 
 function timeToString(second) {
     let hour = Math.floor(second / 3600);
@@ -18,7 +55,9 @@ function timeToString(second) {
 }
 
 function tick() {
-    timeElapsed++;
+    if (memorized !== length) {
+        timeElapsed++;
+    }
 
     total_time = timeToString(timeElapsed)
     document.querySelector('#total-time').innerHTML = total_time
@@ -30,6 +69,10 @@ function tick() {
         avg_time = '--'
     }
     document.querySelector('#avg-time').innerHTML = avg_time
+
+    if (!isLoading) {
+        savePage()
+    }
 }
 
 function saveTime() {
@@ -64,6 +107,9 @@ function saveCurImage() {
         clearInterval(myTimer)
         document.querySelector('#avg-time').innerHTML = timeToString(Math.floor(timeElapsed / memorized))
         saveTime()
+        if (!isLoading) {
+            savePage()
+        }
     }
 }
 
@@ -123,8 +169,21 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
         hide_time_btn.innerHTML = 'Ocultar'
     }
-    addNextItem()
-    myTimer = setInterval(tick, 1000)
+
+    loadPage()
+
+    if (memorized === length) {
+        document.querySelector('#cur-item-container').innerHTML = ''
+        document.querySelector('#next-btn').hidden = true
+        document.querySelector('#congratulations').hidden = false
+        document.querySelector('#recall').hidden = false
+        document.querySelector('#recall').focus()
+        tick()
+    } else {
+        addNextItem()
+        document.querySelector('#next-btn').disabled = true
+        myTimer = setInterval(tick, 1000)
+    }
 
     let next_btn = document.querySelector('#next-btn')
     next_btn.disabled = true

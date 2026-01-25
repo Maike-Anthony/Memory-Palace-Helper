@@ -1,3 +1,63 @@
+let resume = JSON.parse(localStorage.getItem('resume'))
+let isLoading = false
+if (resume === null || resume.address !== 'list') {
+    resume = {
+        'address': '',
+        'data': {
+            'list_name': '',
+            'list_items': [],
+            'csv_list': ''
+        }
+    }
+}
+
+function savePage() {
+    resume.address = 'list'
+    if (localStorage.getItem('list_name') !== null) {
+        resume.data.list_name = localStorage.getItem('list_name')
+    }
+    let temp_items = []
+    document.querySelector('#new-items').querySelectorAll('input').forEach(input => {
+        temp_items.push(input.value)
+    })
+    resume.data.list_items = temp_items
+
+    resume.data.csv_list = document.querySelector('#csv-list-items').value
+
+    localStorage.setItem('resume', JSON.stringify(resume))
+}
+
+function loadPage() {
+    isLoading = true
+    if (resume.address !== 'list') {
+        isLoading = false
+        return
+    }
+
+    document.querySelector('#list-name-input').value = resume.data.list_name
+    document.querySelector('#submit-list-name').disabled = false
+    document.querySelector('#submit-list-name').click()
+
+    for (let i = 0; i < resume.data.list_items.length - 1; i++) {
+        document.querySelector('.plus').click()
+    }
+
+    let i = 0
+    document.querySelector('#new-items').querySelectorAll('input').forEach(input => {
+        input.value = resume.data.list_items[i]
+        i++
+    })
+
+    document.querySelector('#csv-list-items').value = resume.data.csv_list
+
+    if (resume.data.csv_list !== '') {
+        document.querySelector('#csv-toggle').click()
+        document.querySelector('#csv-submit').disabled = false
+    }
+
+    isLoading = false
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     const new_items = document.querySelector('#new-items')
     const sbmt_btn = document.querySelector('#submit-list-items')
@@ -52,6 +112,9 @@ document.addEventListener("DOMContentLoaded", () => {
         new_items.append(new_block)
         new_block.querySelector('input').focus()
         sbmt_btn.disabled = true
+        if (!isLoading) {
+            savePage()
+        }
     })
 
     document.addEventListener('click', event => {
@@ -60,6 +123,9 @@ document.addEventListener("DOMContentLoaded", () => {
             element.parentElement.classList.add('animate-disappear')
             element.parentElement.addEventListener('animationend', () => {
                 element.parentElement.remove()
+                if (!isLoading) {
+                    savePage()
+                }
             })
         } else if (element.id === 'csv-toggle') {
             csv_container.hidden = false
@@ -119,6 +185,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         sbmt_btn.disabled = is_empty()
+        if (!isLoading) {
+            savePage()
+        }
     })
 
     document.addEventListener('keydown', event => {
@@ -146,4 +215,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         return false;
     }
+
+    loadPage()
+    sbmt_btn.disabled = is_empty()
 })

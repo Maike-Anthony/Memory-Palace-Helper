@@ -5,6 +5,59 @@ let recalled = 0
 let timeElapsed = 0
 let myTimer
 
+let resume = JSON.parse(localStorage.getItem('resume'))
+let isLoading = false
+if (resume === null || resume.address !== 'recall') {
+    resume = {
+        'address': '',
+        'data': {
+            'recalled': 0,
+            'timeElapsed': 0,
+            'inputs': [],
+            'checked': false
+        }
+    }
+}
+
+function savePage() {
+    resume.address = 'recall'
+
+    resume.data.recalled = recalled
+    resume.data.timeElapsed = timeElapsed
+
+    let temp_inputs = []
+    document.querySelector('#all-inputs').querySelectorAll('input').forEach(input => {
+        temp_inputs.push(input.value)
+    })
+    resume.data.inputs = temp_inputs
+
+    localStorage.setItem('resume', JSON.stringify(resume))
+}
+
+function loadPage() {
+    isLoading = true
+    if (resume.address !== 'recall') {
+        isLoading = false
+        return
+    }
+
+    recalled = resume.data.recalled
+    timeElapsed = resume.data.timeElapsed
+
+    let i = 0
+    document.querySelector('#all-inputs').querySelectorAll('input').forEach(input => {
+        input.value = resume.data.inputs[i]
+        i++
+    })
+
+    if (resume.data.checked) {
+        document.querySelector('#check-answers').click()
+        tick()
+    }
+
+    isLoading = false
+}
+
 function timeToString(second) {
     let hour = Math.floor(second / 3600);
     second = second % 3600;
@@ -17,7 +70,9 @@ function timeToString(second) {
 }
 
 function tick() {
-    timeElapsed++;
+    if (!resume.data.checked) {
+        timeElapsed++;
+    }
 
     total_time = timeToString(timeElapsed)
     document.querySelector('#total-time').innerHTML = total_time
@@ -29,6 +84,10 @@ function tick() {
         avg_time = '--'
     }
     document.querySelector('#avg-time').innerHTML = avg_time
+
+    if (!isLoading) {
+        savePage()
+    }
 }
 
 function saveTime() {
@@ -109,6 +168,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     addAllItems()
 
+    document.querySelector('#next-page').onclick = () => {
+        localStorage.removeItem('resume')
+    }
+
+    document.querySelector('#recall-again').onclick = () => {
+        localStorage.removeItem('resume')
+    }
+
     hide_time_btn.onclick = () => {
         document.querySelector('#time-container').hidden = !document.querySelector('#time-container').hidden;
         if (document.documentElement.lang === 'en') {
@@ -147,12 +214,20 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         })
         recalled = temp_recalled
+        if (!isLoading) {
+            savePage()
+        }
     })
 
     document.querySelector('#check-answers').onclick = () => {
         check()
         clearInterval(myTimer)
         saveTime()
+        resume.data.checked = true
+        if (!isLoading) {
+            savePage()
+        }
     }
 
+    loadPage()
 })

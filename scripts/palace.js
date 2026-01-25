@@ -1,3 +1,70 @@
+let resume = JSON.parse(localStorage.getItem('resume'))
+let isLoading = false
+if (resume === null || resume.address !== 'palace') {
+    resume = {
+        'address': '',
+        'data': {
+            'input_types': [],
+            'input_labels': []
+        }
+    }
+}
+
+function savePage() {
+    resume.address = 'palace'
+
+    let temp_input_types = []
+    let temp_input_labels = []
+
+    document.querySelector('.all-palaces-container').querySelectorAll('input').forEach(input => {
+        if (input.className === 'palace-input') {
+            temp_input_types.push('palace')
+        } else if (input.className === 'room-input') {
+            temp_input_types.push('room')
+        } else if (input.className === 'locus-input') {
+            temp_input_types.push('locus')
+        }
+        temp_input_labels.push(input.value)
+    })
+
+    resume.data.input_types = temp_input_types
+    resume.data.input_labels = temp_input_labels
+
+    localStorage.setItem('resume', JSON.stringify(resume))
+}
+
+function loadPage() {
+    isLoading = true
+    if (resume.address !== 'palace') {
+        isLoading = false
+        return
+    }
+
+    let palace_n = -1
+    let room_n = -1
+
+    for (let i = 0; i < resume.data.input_types.length; i++) {
+        if (resume.data.input_types[i] === 'palace') {
+            document.querySelector('.add-palace').click()
+            palace_n++
+            room_n = -1
+        } else if (resume.data.input_types[i] === 'room') {
+            document.querySelectorAll('.palace-container')[palace_n].querySelector('.add-room').click()
+            room_n++
+        } else if (resume.data.input_types[i] === 'locus') {
+            document.querySelectorAll('.palace-container')[palace_n].querySelectorAll('.room-container')[room_n].querySelector('.add-locus').click()
+        }
+    }
+
+    let j = 0
+    document.querySelector('.all-palaces-container').querySelectorAll('input').forEach(input => {
+        input.value = resume.data.input_labels[j]
+        j++
+    })
+
+    isLoading = false
+}
+
 const list_name = localStorage.getItem('list_name')
 const list_items = JSON.parse(localStorage.getItem('list_items'))
 let list_length = list_items.length
@@ -84,6 +151,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     })
 
+    document.addEventListener('keyup', () => {
+        if (!isLoading) {
+            savePage()
+        }
+    })
+
     document.addEventListener('keydown', event => {
         if (event.key === 'Enter') {
             if (event.target.className === 'palace-input') {
@@ -107,6 +180,9 @@ document.addEventListener("DOMContentLoaded", () => {
             element.parentElement.addEventListener('animationend', () => {
                 element.parentElement.remove()
                 check_complete()
+                if (!isLoading) {
+                    savePage()
+                }
             })
         } else if (element.className === 'add-palace') {
             const new_palace = document.createElement('div')
@@ -197,5 +273,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         check_complete()
+        if (!isLoading) {
+            savePage()
+        }
     })
+
+    loadPage()
+    check_complete()
 })
