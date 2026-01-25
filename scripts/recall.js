@@ -80,11 +80,11 @@ function check() {
     if (document.documentElement.lang === 'en') {
         document.querySelector('#correct-score').innerHTML = `Correct Items: ${correct}`
         document.querySelector('#mistake-score').innerHTML = `Mistakes: ${mistakes}`
-        document.querySelector('#accuracy-score').innerHTML = `Accuracy: ${accuracy}%`
+        document.querySelector('#accuracy-score').innerHTML = `Accuracy: ${accuracy} %`
     } else {
         document.querySelector('#correct-score').innerHTML = `Itens Corretos: ${correct}`
         document.querySelector('#mistake-score').innerHTML = `Erros: ${mistakes}`
-        document.querySelector('#accuracy-score').innerHTML = `Taxa de Acertos: ${accuracy}%`
+        document.querySelector('#accuracy-score').innerHTML = `Taxa de Acertos: ${accuracy} %`
     }
 
     document.querySelector('#scoreboard').hidden = false
