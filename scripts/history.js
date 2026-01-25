@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             <li>Time/item: ${history[i].recall_time.avg_time}</li>
                             <li>Correct items: ${history[i].scoreboard.correct}</li>
                             <li>Mistakes: ${history[i].scoreboard.mistakes}</li>
-                            <li>Accuracy: ${history[i].scoreboard.accuracy}</li>
+                            <li>Accuracy: ${history[i].scoreboard.accuracy}%</li>
                         </ul>
                     </li>
                     <li>
@@ -127,7 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             <li>Tempo/item: ${history[i].recall_time.avg_time}</li>
                             <li>Itens Corretos: ${history[i].scoreboard.correct}</li>
                             <li>Erros: ${history[i].scoreboard.mistakes}</li>
-                            <li>Taxa de Acertos: ${history[i].scoreboard.accuracy}</li>
+                            <li>Taxa de Acertos: ${history[i].scoreboard.accuracy}%</li>
                         </ul>
                     </li>
                     <li>
