@@ -55,9 +55,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 sbmt_btn.disabled = true
             } else {
                 if (document.documentElement.lang === 'en') {
-                    remaining_p.innerHTML = 'You have enough loci to memorize the list.'
+                    remaining_p.innerHTML = 'You have enough loci to memorize the list. Click "Save Loci"'
                 } else {
-                    remaining_p.innerHTML = 'Você tem loci suficientes para memorizar a lista.'
+                    remaining_p.innerHTML = 'Você tem loci suficientes para memorizar a lista. Clique em "Salvar Loci".'
                 }
                 sbmt_btn.disabled = false
             }
