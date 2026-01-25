@@ -118,7 +118,11 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector('#congratulations').hidden = true
     document.querySelector('#recall').hidden = true
     hide_time_btn = document.querySelector('#hide-time')
-    hide_time_btn.innerHTML = 'Hide'
+    if (document.documentElement.lang === 'en') {
+        hide_time_btn.innerHTML = 'Hide'
+    } else {
+        hide_time_btn.innerHTML = 'Ocultar'
+    }
     addNextItem()
     myTimer = setInterval(tick, 1000)
 
@@ -138,10 +142,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     hide_time_btn.onclick = () => {
         document.querySelector('#time-container').hidden = !document.querySelector('#time-container').hidden;
-        if (hide_time_btn.innerHTML === 'Hide') {
+        if (document.documentElement.lang === 'en') {
+            if (hide_time_btn.innerHTML === 'Hide') {
             hide_time_btn.innerHTML = 'Show'
+            } else {
+                hide_time_btn.innerHTML = 'Hide'
+            }
         } else {
-            hide_time_btn.innerHTML = 'Hide'
+            if (hide_time_btn.innerHTML === 'Ocultar') {
+            hide_time_btn.innerHTML = 'Exibir'
+            } else {
+                hide_time_btn.innerHTML = 'Ocultar'
+            }
         }
     }
 

@@ -91,3 +91,18 @@ iframe {
     aspect-ratio: 16 / 9;
     border: transparent;
 }
+
+@keyframes opacity {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+#get_started, #description, #tutorial {
+    animation: opacity;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
