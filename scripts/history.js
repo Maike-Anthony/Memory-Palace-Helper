@@ -46,6 +46,41 @@ function writeTable(i) {
     }
 }
 
+function again(address, index) {
+    let type = ''
+    if (document.documentElement.lang === 'en') {
+        if (address === 'memorize') {
+            type = 'Memorized again:'
+        } else {
+            type = 'Recalled again:'
+        }
+        address = `${address}.html`
+    } else {
+        if (address === 'memorize') {
+            type = 'Memorizado novamente:'
+        } else {
+            type = 'Relembrado novamente:'
+        }
+        address = `${address}_pt-br.html`
+    }
+    let list_name = history[index].list_name
+    let date = new Date()
+    let now_time = date.toLocaleString()
+    list_name = `${list_name} (${type} ${now_time})`
+    let list_items = history[index].list_items
+    let loci = history[index].loci
+    let images = history[index].images
+
+    localStorage.setItem('list_name', list_name)
+    localStorage.setItem('list_items', JSON.stringify(list_items))
+    localStorage.setItem('loci', JSON.stringify(loci))
+    localStorage.setItem('images', JSON.stringify(images))
+
+    localStorage.removeItem('resume')
+
+    window.location.href = address
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     if (document.documentElement.lang === 'en') {
         if (history.length === 0) {
@@ -68,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (document.documentElement.lang === 'en') {
             session.innerHTML = `
             <details>
-                <summary id="list_name">List Name: ${history[i].list_name}</summary>
+                <summary class="list-name"><span class="name-span">List Name: ${history[i].list_name}</span><span class="name-input-span" hidden><input class="name-input" value="${history[i].list_name}" type="text"></span></summary>
                 <ul>
                     <li>Memorization
                         <ul>
@@ -76,6 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             <li>Total time: ${history[i].memorize_time.total_time}</li>
                             <li>Time/item: ${history[i].memorize_time.avg_time}</li>
                         </ul>
+                        <button class="memorize-again">Memorize Again</button>
                     </li>
                     <li>Recall
                         <ul>
@@ -85,6 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             <li>Mistakes: ${history[i].scoreboard.mistakes}</li>
                             <li>Accuracy: ${history[i].scoreboard.accuracy} %</li>
                         </ul>
+                        <button class="recall-again">Recall Again</button>
                     </li>
                     <li>
                         <details>
@@ -112,7 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             session.innerHTML = `
             <details>
-                <summary id="list_name">Nome da Lista: ${history[i].list_name}</summary>
+                <summary class="list-name"><span class="name-span">Nome da Lista: ${history[i].list_name}</span><span class="name-input-span" hidden><input class="name-input" value="${history[i].list_name}" type="text"></span></summary>
                 <ul>
                     <li>Memorização
                         <ul>
@@ -120,6 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             <li>Tempo total: ${history[i].memorize_time.total_time}</li>
                             <li>Tempo/item: ${history[i].memorize_time.avg_time}</li>
                         </ul>
+                        <button class="memorize-again">Memorize Novamente</button>
                     </li>
                     <li>Relembrar
                         <ul>
@@ -129,6 +167,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             <li>Erros: ${history[i].scoreboard.mistakes}</li>
                             <li>Taxa de Acertos: ${history[i].scoreboard.accuracy} %</li>
                         </ul>
+                        <button class="recall-again">Relembre Novamente</button>
                     </li>
                     <li>
                         <details>
@@ -158,6 +197,49 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelector('#all-sessions').append(session)
     }
 
+    document.querySelectorAll('.list-name').forEach(element => {
+        let new_name_btn = document.createElement('button')
+        new_name_btn.innerHTML = '✏️'
+        new_name_btn.className = 'new-name-btn'
+        element.append(new_name_btn)
+    })
+
+    document.querySelectorAll('.new-name-btn').forEach(btn => {
+        btn.onclick = () => {
+            let session = btn.closest('.session')
+            let i = session.dataset.id
+            session.querySelector('.name-input-span').hidden = !session.querySelector('.name-input-span').hidden
+            session.querySelector('.name-span').hidden = !session.querySelector('.name-span').hidden
+
+            if (btn.innerHTML === '✏️') {
+                btn.innerHTML = '✅'
+            } else {
+                btn.innerHTML = '✏️'
+            }
+
+            if (!session.querySelector('.name-input-span').hidden) {
+                session.querySelector('.name-input').focus()
+            }
+
+            if (session.querySelector('.name-input-span').hidden) {
+                let new_name = session.querySelector('input').value
+                if (document.documentElement.lang === 'en') {
+                    session.querySelector('.name-span').innerHTML = `List Name: ${new_name}`
+                } else {
+                    session.querySelector('.name-span').innerHTML = `Nome da Lista: ${new_name}`
+                }
+                history[i].list_name = new_name
+                localStorage.setItem('history', JSON.stringify(history))
+            }
+        }
+    })
+
+    document.addEventListener('keyup', event => {
+        if (event.target.className === 'name-input' && event.key === 'Enter') {
+            event.target.closest('.list-name').querySelector('.new-name-btn').click()
+        }
+    })
+
     document.querySelectorAll('.session').forEach(element => {
         writeTable(element.dataset.id)
     })
@@ -166,6 +248,20 @@ document.addEventListener("DOMContentLoaded", () => {
         button.onclick = () => {
             let i = button.closest('.session').dataset.id
             downloadCsv(i)
+        }
+    })
+
+    document.querySelectorAll('.memorize-again').forEach(button => {
+        button.onclick = () => {
+            let i = button.closest('.session').dataset.id
+            again('memorize', i)
+        }
+    })
+
+    document.querySelectorAll('.recall-again').forEach(button => {
+        button.onclick = () => {
+            let i = button.closest('.session').dataset.id
+            again('recall', i)
         }
     })
 

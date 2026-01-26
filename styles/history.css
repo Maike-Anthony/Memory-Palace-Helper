@@ -63,7 +63,7 @@ button:disabled {
     cursor: not-allowed;
 }
 
-.download-btn {
+.download-btn, .memorize-again, .recall-again {
     display: flex;
     justify-self: center;
 }
@@ -102,8 +102,15 @@ th {
     color: #fff;
 }
 
-#list_name {
+.list-name {
     font-weight: 600;
+}
+
+.session .new-name-btn {
+    margin-left: 10px;
+    background-color: transparent;
+    box-shadow: none !important;
+    text-shadow: 1px 1px 1px rgb(0, 0, 0, 0.8);
 }
 
 @keyframes delete {
