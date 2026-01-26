@@ -131,7 +131,7 @@ function addNextItem() {
         `
     } else {
         new_item.innerHTML = `
-        <p>Visualize mentalmente o ${curMp} e caminhe até o ${curLocus} no ${curRoom}. <br> Agora crie uma imagem mental acontecendo no ${curLocus} para representar o ${curItem} e digite-a abaixo.</p>
+        <p>Visualize mentalmente o(a) ${curMp} e caminhe até o(a) ${curLocus} no(a) ${curRoom}. <br> Agora crie uma imagem mental acontecendo no(a) ${curLocus} para representar o(a) ${curItem} e digite-a abaixo.</p>
         <div class="image-container">
             <p>${curLocus}: ${curItem}</p>
             <input class="image-input" type="text" placeholder="Digite a Imagem" autofocus autocomplete="off">
