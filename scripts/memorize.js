@@ -151,6 +151,7 @@ function nextBtnPressed() {
     if (memorized === length) {
         document.querySelector('#cur-item-container').innerHTML = ''
         document.querySelector('#next-btn').hidden = true
+        document.querySelector('#time-to-memorize').hidden = true
         document.querySelector('#congratulations').hidden = false
         document.querySelector('#recall').hidden = false
         document.querySelector('#recall').focus()
