@@ -123,7 +123,7 @@ function addNextItem() {
     new_item.className = 'cur-item';
     if (document.documentElement.lang === 'en') {
         new_item.innerHTML = `
-        <p>Mentally visualize the ${curMp} and walk to the ${curLocus} in the ${curRoom}. <br> Now create a mental image happening in the ${curLocus} to represent the ${curItem} and type it in.</p>
+        <p>Mentally visualize the <strong>${curMp}</strong> and walk to the <strong>${curLocus}</strong> in the <strong>${curRoom}</strong>. <br> Now create a mental image happening in the <strong>${curLocus}</strong> to represent the <strong>${curItem}</strong> and type it in.</p>
         <div class="image-container">
             <p>${curLocus}: ${curItem}</p>
             <input class="image-input" type="text" placeholder="Type Image" autofocus autocomplete="off">
@@ -131,7 +131,7 @@ function addNextItem() {
         `
     } else {
         new_item.innerHTML = `
-        <p>Visualize mentalmente o(a) ${curMp} e caminhe até o(a) ${curLocus} no(a) ${curRoom}. <br> Agora crie uma imagem mental acontecendo no(a) ${curLocus} para representar o(a) ${curItem} e digite-a abaixo.</p>
+        <p>Visualize mentalmente o(a) <strong>${curMp}</strong> e caminhe até o(a) <strong>${curLocus}</strong> no(a) <strong>${curRoom}</strong>. <br> Agora crie uma imagem mental acontecendo no(a) <strong>${curLocus}</strong> para representar o(a) <strong>${curItem}</strong> e digite-a abaixo.</p>
         <div class="image-container">
             <p>${curLocus}: ${curItem}</p>
             <input class="image-input" type="text" placeholder="Digite a Imagem" autofocus autocomplete="off">
